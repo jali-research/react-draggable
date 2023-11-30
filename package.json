@@ -1,6 +1,6 @@
 {
   "name": "@jali-research/react-draggable",
-  "version": "4.4.6-jali.0",
+  "version": "4.4.6-jali.1",
   "description": "React draggable component",
   "main": "build/cjs/cjs.js",
   "unpkg": "build/web/react-draggable.min.js",

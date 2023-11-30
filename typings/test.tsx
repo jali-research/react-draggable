@@ -1,10 +1,11 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import Draggable, {DraggableCore} from 'react-draggable';
+import Draggable, {DraggableCore} from '.';
 
 const root = document.getElementById('root')
 
 function handleStart() {}
+function handleCanDrag() {}
 function handleDrag() {}
 function handleStop() {}
 function handleMouseDown() {}
@@ -17,6 +18,7 @@ ReactDOM.render(
     cancel=".cancel"
     grid={[10, 10]}
     onStart={handleStart}
+    canDrag={handleCanDrag}
     onDrag={handleDrag}
     onStop={handleStop}
     offsetParent={document.body}
@@ -51,6 +53,7 @@ ReactDOM.render(
     grid={[10, 10]}
     nodeRef={nodeRefCore}
     onStart={handleStart}
+    canDrag={handleCanDrag}
     onDrag={handleDrag}
     onStop={handleStop}
     offsetParent={document.body}
