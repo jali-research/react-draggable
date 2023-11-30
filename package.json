@@ -1,6 +1,6 @@
 {
-  "name": "react-draggable",
-  "version": "4.4.6",
+  "name": "@jali-research/react-draggable",
+  "version": "4.4.6-jali.0",
   "description": "React draggable component",
   "main": "build/cjs/cjs.js",
   "unpkg": "build/web/react-draggable.min.js",
@@ -25,7 +25,7 @@
   "types": "./typings/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/react-grid-layout/react-draggable.git"
+    "url": "https://github.com/jali-research/react-draggable.git"
   },
   "keywords": [
     "react",

@@ -112,6 +112,7 @@ class App extends React.Component {
         grid={[25, 25]}
         scale={1}
         onStart={this.handleStart}
+        canDrag={this.handleCanDrag}
         onDrag={this.handleDrag}
         onStop={this.handleStop}>
         <div>
@@ -222,6 +223,9 @@ onMouseDown: (e: MouseEvent) => void,
 // the action will cancel.
 onStart: DraggableEventHandler,
 
+// Called while dragging. If `false` is returned dragging will be prevented but not canceled.
+canDrag: DraggableEventHandler,
+
 // Called while dragging.
 onDrag: DraggableEventHandler,
 
@@ -246,7 +250,7 @@ onStop: DraggableEventHandler,
 // pointing to the actual child DOM node and not a custom component.
 //
 // For rich components, you need to both forward the ref *and props* to the underlying DOM
-// element. Props must be forwarded so that DOM event handlers can be attached. 
+// element. Props must be forwarded so that DOM event handlers can be attached.
 // For example:
 //
 //   const Component1 = React.forwardRef(function (props, ref) {
@@ -331,6 +335,7 @@ on itself and thus must have callbacks attached to be useful.
   grid: [number, number],
   handle: string,
   onStart: DraggableEventHandler,
+  canDrag: DraggableEventHandler,
   onDrag: DraggableEventHandler,
   onStop: DraggableEventHandler,
   onMouseDown: (e: MouseEvent) => void,
@@ -342,7 +347,7 @@ Note that there is no start position. `<DraggableCore>` simply calls `drag` hand
 indicating its position (as inferred from the underlying MouseEvent) and deltas. It is up to the parent
 to set actual positions on `<DraggableCore>`.
 
-Drag callbacks (`onStart`, `onDrag`, `onStop`) are called with the [same arguments as `<Draggable>`](#draggable-api).
+Drag callbacks (`onStart`, `canDrag`, `onDrag`, `onStop`) are called with the [same arguments as `<Draggable>`](#draggable-api).
 
 ----
 

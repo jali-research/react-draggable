@@ -8,7 +8,8 @@ class App extends React.Component {
     },
     controlledPosition: {
       x: -400, y: 200
-    }
+    },
+    canDragStartTime: 0,
   };
 
   handleDrag = (e, ui) => {
@@ -20,6 +21,31 @@ class App extends React.Component {
       }
     });
   };
+
+  handleCanDragStart = (e, ui) => {
+    this.setState({
+      canDragStartTime: Date.now(),
+    });
+  }
+
+  handleCanDragStop = (e, ui) => {
+    this.setState({
+      canDragStartTime: 0,
+    });
+  }
+
+  handleCanDrag = (e, ui) => {
+    if (this.state.canDragStartTime === 0) {
+      return undefined;
+    }
+
+    const now = Date.now();
+    const isOddSecond = (now - this.state.canDragStartTime) % 2000 < 1000;
+
+    if (!isOddSecond) {
+      return false;
+    }
+  }
 
   onStart = () => {
     this.setState({activeDrags: ++this.state.activeDrags});
@@ -205,6 +231,9 @@ class App extends React.Component {
               <a href="#" onClick={this.adjustYPos}>Adjust y ({controlledPosition.y})</a>
             </div>
           </div>
+        </Draggable>
+        <Draggable {...dragHandlers} canDrag={this.handleCanDrag} onStart={this.handleCanDragStart} onStop={this.handleCanDragStop}>
+          <div className="box">I can only be dragged for during the odd seconds of continuous drag</div>
         </Draggable>
 
       </div>
